@@ -1,0 +1,15 @@
+<p-card header="LOGIN" class="card">
+  <form [formGroup]="form_login">
+    <div class="p-field">
+      <label for="float-input">Nombre de Usuario</label>
+      <input id="float-input" pInputText formControlName= "username" type="text">
+    </div>
+    <br>
+    <div class="p-field">
+      <label for="pass">Contraseña</label>
+      <input id="pass" pInputText formControlName= "password" type="password">
+    </div>
+    <br>
+    <button pButton (click)="login()" label="LOGIN"></button>
+  </form>
+</p-card>

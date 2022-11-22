@@ -1,0 +1,61 @@
+<h1>Bienvenidos a la seccion Empleados</h1>
+<div style="padding:30px">
+  <p-table [value]="empleado" selectionMode="single" [(selection)]="empleado_seleccionado" (onRowSelect)="llenar_empleado()">
+    <ng-template pTemplate="caption">
+      <p-button icon="pi pi-plus-circle" (click)="ver_form_empleado=true"></p-button>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>apellido</th>
+        <th>Telefono</th>
+        <th>Nombre de usuario</th>
+        <th>Contraseña</th>
+        <th>Acciòn</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-empleado>
+      <tr [pSelectableRow]="empleado">
+        <td>{{empleado.id}}</td>
+        <td>{{empleado.nombre}}</td>
+        <td>{{empleado.apellido}}</td>
+        <td>{{empleado.telefono}}</td>
+        <td>{{empleado.nombre_usuario}}</td>
+        <td>{{empleado.Contrasena}}</td>
+        <td>
+          <i pTooltip="Editar {{empleado.nombre}}" style="cursor: pointer" (click)="empleado_seleccionado = empleado;llenar_empleado()" class="pi pi-pencil"></i>
+        </td>
+
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog header="empleado" [(visible)]="ver_form_empleado">
+  <form [formGroup]="form_empleado">
+    <div class="p-field">
+      <label for="nombre">Nombre</label>
+      <input id="nombre" pInputText formControlName="nombre" type="text">
+    </div>
+    <div class="p-field">
+      <label for="apellido">Apellido</label>
+      <input id="apellido" pInputText formControlName="apellido" type="text">
+    </div>
+    <div class="p-field">
+      <label for="telefono">Telefono</label>
+      <input id="telefono" pInputText formControlName="telefono" type="text">
+    </div>
+
+    <div class="p-field">
+      <label for="nombre_usuario">Nombre de usuario</label>
+      <input id="nombre_usuario" pInputText formControlName="nombre_usuario" type="text">
+    </div>
+    <div class="p-field">
+      <label for="Contrasena">Contraseña</label>
+      <input id="Contrasena" pInputText formControlName="Contrasena" type="password">
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <button style="margin: 20px" pButton (click)="guardar_empleado()" label="Guardar"></button>
+  </ng-template>
+</p-dialog>
